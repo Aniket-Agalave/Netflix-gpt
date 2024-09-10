@@ -12,7 +12,7 @@ const MainContainer = () => {
   const { original_title, overview, id } = mainMovie;
 
   return (
-    <div>
+    <div className=" overflow-x-scroll no-scrollbar  overflow-y-scroll hide-scrollbar no-scrollbar">
       <VideoTitle title={original_title} overview={overview} />
       <VideoBackground movieId={id} />
     </div>

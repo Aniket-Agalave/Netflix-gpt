@@ -34,6 +34,8 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
+        dispatch(removeUser());
+        navigate("/");
       })
       .catch((error) => {
         // An error happened.
