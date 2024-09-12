@@ -87,26 +87,17 @@ const Login = () => {
     setIsSignInForm(!isSignInForm);
   };
   return (
-    <div className="relative min-h-screen">
-      {/* Background Gradient covering the whole Login component */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent z-0"></div>
-
-      {/* Background Image */}
-      <img
-        src={BG_URL}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      />
-
-      {/* Header Component */}
+    <div className="">
       <Header />
+      <div className="absolute">
+        <img src={BG_URL} alt="" className="w-screen h-screen object-cover " />
+      </div>
 
-      {/* Form Section */}
       <form
         onSubmit={handleFormSubmit}
-        className="absolute w-3/12 p-12 my-36 mx-auto right-0 left-0 bg-black/85 text-white rounded-md z-20"
+        className="absolute w-3/4 md:w-3/12 p-4 md:p-12 my-36 md:my-36 mx-auto right-0 left-0 bg-slate-950/85 text-white rounded-lg z-20"
       >
-        <h1 className="font-bold text-3xl py-4">
+        <h1 className="font-bold text-2xl md:text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignInForm && (

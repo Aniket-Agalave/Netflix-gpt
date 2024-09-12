@@ -5,13 +5,19 @@ import GptSuggetion from "./GptSuggetion";
 
 const GptBrowse = () => {
   return (
-    <div>
+    <>
       <div className="fixed -z-10">
-        <img src={BG_URL} alt="" className="" />
+        <img
+          src={BG_URL}
+          alt=""
+          className="h-screen object-cover md:w-screen"
+        />
       </div>
-      <GptSearchbar />
-      <GptSuggetion />
-    </div>
+      <div className="">
+        <GptSearchbar />
+        <GptSuggetion />
+      </div>
+    </>
   );
 };
 
