@@ -4,13 +4,12 @@ import { IMG_CDN_URL } from "../utils/constants";
 
 const MovieCard = ({ posterPath }) => {
   // Log the posterPath to check the value passed
-  // console.log("Poster Path:", posterPath);
 
   // Check if posterPath exists before rendering the image
-  if (!posterPath) return <p>Poster not available</p>;
+  if (!posterPath) return null;
 
   return (
-    <div className="w-40 h-40 mx-auto pr-4">
+    <div className="w-48 max-h-full mx-auto pr-4">
       <img src={`${IMG_CDN_URL}${posterPath}`} alt="Movie Poster" />
     </div>
   );

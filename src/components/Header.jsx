@@ -2,13 +2,16 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LOGO } from "../utils/constants";
+import { changeLanguage } from "../utils/configSlice";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { auth } from "../utils/firebase";
+import { toggleGptSearchView } from "../utils/gptSlice";
 import { addUser, removeUser } from "../utils/userSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -42,20 +45,46 @@ const Header = () => {
         navigate("/error");
       });
   };
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  };
+
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
 
   return (
-    <div className="absolute top-0 left-0 w-full p-4 bg-gradient-to-b from-black to-transparent z-20 flex justify-between">
+    <div className="absolute top-0 left-0 w-full p-4 bg-gradient-to-b from-black to-transparent z-20 flex justify-between items-center">
       <img className="w-48 mx-8" src={LOGO} alt="Netflix Logo" />
       {user && (
-        <div className="flex items-center p-4">
+        <div className="flex items-center space-x-4 p-4">
+          {showGptSearch && (
+            <select
+              onChange={handleLanguageChange}
+              className="p-2 m-2 bg-gray-900 text-white rounded-lg"
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.value}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <button
+            onClick={handleGptSearchClick}
+            className="bg-violet-600 text-white py-2 px-4 rounded-md hover:bg-violet-700 flex items-center justify-center leading-tight text-sm"
+          >
+            {showGptSearch ? "Home" : "GPT Search"}
+          </button>
+
           <img
-            className="w-10 h-10 mr-2"
+            className="w-10 h-10 rounded-xl "
             src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
             alt="user-icon"
           />
           <button
             onClick={handleSignOut}
-            className="ml-2 text-white p-2 my-2 bg-[#e50914] w-full rounded-md"
+            className="ml-2 text-white py-2 px-4 bg-[#e50914] rounded-md hover:bg-red-700 transition duration-300"
           >
             Sign Out
           </button>

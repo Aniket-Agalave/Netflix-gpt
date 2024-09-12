@@ -5,11 +5,17 @@ export const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0OTDNEpUTHQoQUJMHLrErGJyHg89uy71MyuH4ZmE5ZiIsIm5iZiI6MTcyNTU0NTDNEpUTHQoQUJMHLrErGJyHg89uy71MyuHyY2UyNjAwMzM1OGYyYTE0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.vJGkQf6Ulac_iOSnK_FY0Y6zTff4cO5BPic7VTfT9pM",
+    Authorization: "Bearer " + import.meta.env.VITE_TMDB_TOKEN,
   },
 };
 
-export const API_KEY = "498370a7ee8971cfbcc4ba2d9968fa9f";
-
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const BG_URL =
+  "https://assets.nflxext.com/ffe/siteui/vlv3/dae1f45f-c2c5-4a62-8d58-6e1b0c6b2d8e/242447b0-bdfd-4235-8288-58d84366f0dc/US-en-20240827-TRIFECTA-perspective_WEB_d7dc1add-9eaf-4d94-88f4-2e2cf381a362_large.jpg";
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: "English" },
+  { identifier: "hindi", name: "Hindi" },
+  { identifier: "spanish", name: "Spanish" },
+];

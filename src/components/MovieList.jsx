@@ -3,8 +3,6 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
-  // console.log("Movies:", movies); // Check the movies array
-
   return (
     <div className="py-2 px-2">
       <h1 className="text-lg text-white">{title}</h1>
